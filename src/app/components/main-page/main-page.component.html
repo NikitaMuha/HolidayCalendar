@@ -1,0 +1,25 @@
+<div class="wrapper">
+  <app-header></app-header>
+  <div class="holidays-list">
+    <div class="holidays-list__main">
+      <h3>Approaching holidays</h3>
+      <div class="random-countries-cards">
+        <mat-card
+          *ngFor="let holiday of randomHolidays; let i = index"
+          class="country-card"
+          appearance="outlined"
+        >
+          <mat-card-content>
+            <div *ngIf="countries[i]">
+              <div>
+                <strong>Country:</strong> {{ countries[i].officialName }}
+              </div>
+            </div>
+            <div><strong>Holiday:</strong> {{ holiday.name }}</div>
+            <div><strong>Date:</strong> {{ holiday.date | date }}</div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

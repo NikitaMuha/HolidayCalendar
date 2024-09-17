@@ -1,0 +1,22 @@
+<div class="header">
+  <div class="header__title">
+    <span class="header__title-text">Holiday Calendar</span>
+  </div>
+  <div class="ng-autocomplete">
+    <ng-autocomplete
+      [data]="autocompleteArray"
+      searchKeyword="name"
+      placeholder="Select country"
+      (selected)="countrySearch($event)"
+      [itemTemplate]="itemTemplate"
+      [notFoundTemplate]="notFoundTemplate"
+    >
+    </ng-autocomplete>
+    <ng-template #itemTemplate let-item>
+      <a [innerHTML]="item.name"></a>
+    </ng-template>
+    <ng-template #notFoundTemplate let-notFound>
+      <div [innerHTML]="notFound"></div>
+    </ng-template>
+  </div>
+</div>

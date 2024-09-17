@@ -1,0 +1,58 @@
+<div class="wrapper">
+  <app-header></app-header>
+
+  <div class="country">
+    <div class="country__info-year">
+      <div class="info">
+        <ng-container *ngIf="sharedCountry$ | async as sharedCountry">
+          <h2>{{ sharedCountry.commonName }}</h2>
+          <p>
+            <strong>Official Name:</strong> {{ sharedCountry.officialName }}
+          </p>
+          <p><strong>Region:</strong> {{ sharedCountry.region }}</p>
+        </ng-container>
+      </div>
+
+      <div class="year">
+        <form>
+          <mat-form-field>
+            <mat-label>Select a year</mat-label>
+            <mat-select
+              [(ngModel)]="selectedYear"
+              name="year"
+              (selectionChange)="selectionTrack($event.value, countryCode)"
+            >
+              @for (year of years; track year) {
+              <mat-option [value]="year">{{ year }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </form>
+      </div>
+    </div>
+    <div class="event-list">
+      @for(event of events; track event) {
+      <mat-card appearance="outlined" class="event-list__event-card">
+        <mat-card-content>
+          <div><strong>Name:</strong>{{ event.name }}</div>
+          <div><strong>Local name:</strong>{{ event.localName }}</div>
+          <div><strong>Date:</strong>{{ event.date }}</div>
+          <div><strong>Type:</strong>{{ event.types }}</div>
+        </mat-card-content>
+      </mat-card>
+      }
+      <mat-card
+        *ngFor="let event of events"
+        appearance="outlined"
+        class="holiday-card"
+      >
+        <mat-card-content>
+          <div><strong>Name:</strong> {{ event.name }}</div>
+          <div><strong>Local name:</strong> {{ event.localName }}</div>
+          <div><strong>Date:</strong> {{ event.date }}</div>
+          <div><strong>Type:</strong> {{ event.types }}</div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
